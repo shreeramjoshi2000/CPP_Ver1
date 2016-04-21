@@ -1,2 +1,90 @@
 Enter file contents here
 #This is the template for Magic Cubver
+#include <iostream>
+
+#include <ctime>
+#include <cstdlib>
+#include <iomanip>
+
+using namespace std;
+
+bool MagicSquare(int[][3],int,int);
+//bool isValid (int[][3],int,int);
+
+int main()
+{
+    const int ROWS = 3;
+    const int COLUMNS = 3;
+    int ArrayTotal = 0;
+    int magicSquare[ROWS][COLUMNS];
+
+    unsigned seed = time(0);
+    srand(seed);
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            magicSquare[i][j] = rand()% 9 + 1;
+            cout << setw(3) << magicSquare[i][j];
+        }
+        cout << endl;
+    }
+
+    MagicSquare(magicSquare,ROWS,COLUMNS);
+
+    return 0;
+}
+
+//bool isValid(int )
+
+bool MagicSquare(int Array[][3], int rows, int columns)
+{
+    const int MAGIC_NUMBER = 14;
+    int rowTotal = 0, colTotal = 0, rDiagTotal = 0, lDiagTotal = 0;
+    bool magicSquare;
+
+    for (int i = 0; i < rows; i++)
+    {
+
+        for (int j = 0; j < columns; j++)
+        {
+            rowTotal += Array[i][j];
+        }
+
+        cout<<"Row("<<i<<")="<<rowTotal<<endl;
+
+    }
+
+    for (int j = 0; j < columns; j++)
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            colTotal += Array[i][j];
+        }
+
+    }
+
+    for(int i = 1; i <= 3;i++)
+    {
+        rDiagTotal += Array[i][i];
+    }
+
+    for(int i = 0;i < 3 ;i++)
+     {
+         lDiagTotal += Array[3-i-1][i];
+     }
+
+    if (rowTotal == MAGIC_NUMBER && colTotal == MAGIC_NUMBER && rDiagTotal == MAGIC_NUMBER && lDiagTotal == MAGIC_NUMBER)
+    {
+        magicSquare = true;
+        cout << "Magic Square!" << endl;
+    }
+    else
+    {
+        magicSquare = false;
+        cout << "Not a magic square!" << endl;
+    }
+    return magicSquare;
+}
+
