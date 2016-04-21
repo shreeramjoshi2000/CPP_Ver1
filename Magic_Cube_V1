@@ -1,7 +1,7 @@
 Enter file contents here
 #This is the template for Magic Cubver
 #include <iostream>
-
+# added by gopal at 1:38PM
 #include <ctime>
 #include <cstdlib>
 #include <iomanip>
